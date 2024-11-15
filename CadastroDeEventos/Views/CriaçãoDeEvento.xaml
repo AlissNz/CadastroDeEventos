@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroDeEventos.Views.CriaçãoDeEvento"
+             Title="CriaçãoDeEvento"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#09090B">
+
+    <VerticalStackLayout VerticalOptions="CenterAndExpand"
+                         Padding="10">
+        
+        <!--Titulo-->
+        <Label Text="Dados do Evento"
+               FontFamily="OdibeeSans"
+               FontSize="50"
+               TextColor="White"/>
+
+        <Frame Padding="10"
+               BackgroundColor="#1B1B1D">
+            <VerticalStackLayout>
+                
+                <!--Nome do evento-->
+                <Frame Padding="10"
+                       Margin="10">
+                    <VerticalStackLayout Spacing="2">
+
+                        <Label Text="Nome do evento:"
+                               TextTransform="Uppercase"/>
+                        <Entry x:Name="txt_nome"/>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+                
+                <!--Participantes-->
+                <Frame Padding="10"
+                       Margin="10">
+                    <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="*, *, 2*">
+
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Participantes:"/>
+
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_part}"
+                               TextColor="Cyan"/>
+
+                        <Stepper Grid.Row="0"
+                               Grid.Column="2"
+                               x:Name="stp_part"
+                               Minimum="0"
+                               Maximum="50"
+                               Increment="1"
+                               BackgroundColor="Black"/>
+
+                    </Grid>
+                </Frame>
+                
+                <!--Local do evento-->
+                <Frame Padding="10"
+                       Margin="10">
+                    <VerticalStackLayout Spacing="2">
+
+                        <Label Text="Local do evento:"
+                               TextTransform="Uppercase"/>
+
+                        <Picker x:Name="pck_local"
+                                Title="Escolha o local do evento"
+                                ItemDisplayBinding="{Binding Descricao}"/>
+
+                        <Button Margin="10"
+                                Text="Tabela de Preços"
+                                BackgroundColor="Indigo"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                Clicked="Button_Clicked_1"/>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <!-- Duração do evento-->
+                <Frame Padding="10"
+                       Margin="10">
+                    <VerticalStackLayout Spacing="2">
+
+                        <Label Text="Duração do evento"
+                               TextTransform="Uppercase"/>
+
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="Inicio:"/>
+                            <DatePicker x:Name="dtpck_inicio"
+                                        Format="dd/MM/yyyy"
+                                        DateSelected="dtpck_inicio_DateSelected"
+                                        TextColor="Cyan"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="Término:"/>
+                            <DatePicker x:Name="dtpck_termino"
+                                        Format="dd/MM/yyyy"
+                                        TextColor="Cyan"/>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+                
+                
+                <Button Text="Avançar"
+                        Margin="10"
+                        BackgroundColor="Indigo"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"/>
+
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+
+</ContentPage>
